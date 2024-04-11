@@ -46,7 +46,39 @@ public class AnimalsController : ControllerBase
         
         return Ok(animal);
     }
-    
-    
-    
+
+    [HttpPost]
+    public IActionResult CreateAnimal(Animal animal)
+    {
+        _animals.Add(animal);
+        return StatusCode(StatusCodes.Status201Created);
+    }
+
+    [HttpPut("{int:id}")]
+    public IActionResult UpdateAnimal(int id, Animal animal)
+    {
+        var animalToEdit = _animals.FirstOrDefault(a => a.Id == id);
+        if (animal == null)
+        {
+            return NotFound($"Animal with id {id} was not found");
+        }
+
+        _animals.Remove(animalToEdit);
+        _animals.Add(animal);
+        return NoContent();
+    }
+
+    [HttpDelete("{int:id}")]
+    public IActionResult DeleteAnimal(int id)
+    {
+        var animalToDelete = _animals.FirstOrDefault(a => a.Id == id);
+
+        if (animalToDelete == null)
+        {
+            NotFound($"Animal with id {id} was not found");
+        }
+
+        _animals.Remove(animalToDelete);
+        return NoContent();
+    }
 }
