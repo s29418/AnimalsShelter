@@ -1,10 +1,9 @@
 ﻿using AnimalsShelter.Models;
 
-namespace AnimalsShelter.Repositories;
+namespace AnimalsShelter.Services;
 
-public interface IVisitsRepository
+public interface IVisitsService
 {
     IEnumerable<Visit> GetVisitsByAnimalId(int animalId);
     int CreateVisit(Visit visit);
-    
 }
