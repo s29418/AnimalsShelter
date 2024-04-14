@@ -1,24 +1,24 @@
 ﻿using AnimalsShelter.Models;
+using AnimalsShelter.Repositories;
 
 namespace AnimalsShelter.Services;
 
-public class VisitsService
+public class VisitsService : IVisitsService
 {
-    private readonly IVisitsService _visitsService;
-    
-    public VisitsService(IVisitsService visitsService)
+    private readonly IVisitsRepository _visitsRepository;
+
+    public VisitsService(IVisitsRepository visitsRepository)
     {
-        _visitsService = visitsService;
+        _visitsRepository = visitsRepository;
     }
-    
+
     public IEnumerable<Visit> GetVisitsByAnimalId(int animalId)
     {
-        return _visitsService.GetVisitsByAnimalId(animalId);
+        return _visitsRepository.GetVisitsByAnimalId(animalId);
     }
-    
+
     public int CreateVisit(Visit visit)
     {
-        return _visitsService.CreateVisit(visit);
+        return _visitsRepository.CreateVisit(visit);
     }
-    
 }

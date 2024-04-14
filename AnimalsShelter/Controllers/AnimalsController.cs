@@ -19,7 +19,7 @@ public class AnimalsController : ControllerBase
     public IActionResult GetAnimals()
     {
         var animals = _animalsService.GetAnimals();
-        return Ok(_animalsService);
+        return Ok(animals);
     }
 
     [HttpGet("{id:int}")]
